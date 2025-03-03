@@ -2,22 +2,22 @@
 
 class Solution:
     def trap(self, heights):
-        if heights == []:
-            return 0
-        
-        gauche, droite= 0, len(heights) - 1
-        hauteurGaucheMax, hauteurDroiteMax = heights[gauche], heights[droite]
         volume = 0
+        if heights == []:
+            return volume
+        
+        left, right = 0, len(heights) - 1
+        maxLeft, maxRight = heights[left], heights[right]
 
-        while gauche < droite:
-            if hauteurGaucheMax < hauteurDroiteMax:
-                gauche += 1
-                hauteurGaucheMax = max(hauteurGaucheMax, heights[gauche])
-                volume += max(0,hauteurGaucheMax - heights[gauche] )
+        while left < right:
+            if maxLeft < maxRight:
+                maxLeft = max(maxLeft, heights[left + 1])
+                volume += max(0, maxLeft - heights[left+1])
+                left += 1
             else:
-                droite -= 1
-                hauteurDroiteMax = max(hauteurDroiteMax, heights[droite])
-                volume+= max(0, hauteurDroiteMax - heights[droite])
+                maxRight = max(maxRight, heights[right - 1])
+                volume += max(0, maxRight - heights[right - 1])
+                right -= 1
         return volume
 
 
