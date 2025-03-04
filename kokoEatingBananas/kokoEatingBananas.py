@@ -5,6 +5,8 @@ class Solution:
         currentTemps = 0
         for banana in piles:
             currentTemps += (banana + speed - 1) // speed
+            if currentTemps > h :
+                return False
         return currentTemps <= h
 
     def minEatingSpeed(self, piles: list[int], h: int) -> int:
